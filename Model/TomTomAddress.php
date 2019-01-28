@@ -87,9 +87,21 @@ final class TomTomAddress extends Address
         return $new;
     }
 
+    public function toArray(): array
+    {
+        $array = parent::toArray();
+
+        $array = array_merge($array, [
+            'formattedAddress' => $this->getFormattedAddress(),
+            'countrySubdivision' => $this->getCountrySubdivision(),
+            'countrySubdivisionName' => $this->getCountrySubdivisionName(),
+        ]);
+
+        return $array;
+    }
+
     public static function createFromArray(array $data)
     {
-
         $defaults = [
             'countrySubdivision' => null,
             'countrySubdivisionName' => null,
