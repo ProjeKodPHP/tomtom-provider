@@ -1,6 +1,6 @@
 <?php
 
-//declare(strict_types=1);
+declare(strict_types=1);
 
 namespace Geocoder\Provider\TomTom\Model;
 
@@ -17,12 +17,12 @@ final class TomTomAddress extends Address
     /**
      * @var string|null
      */
-    private $countrySubDivision;
+    private $countrySubdivision;
 
     /**
      * @var string|null
      */
-    private $countrySubDivisionName;
+    private $countrySubdivisionName;
     /**
      * @return null|string
      */
@@ -47,21 +47,21 @@ final class TomTomAddress extends Address
     /**
      * @return string|null
      */
-    public function getCountrySubDivision()
+    public function getCountrySubdivision()
     {
-        return $this->countrySubDivision;
+        return $this->countrySubdivision;
     }
 
 
     /**
-     * @param string|null $countrySubDivision
+     * @param string|null $countrySubdivision
      *
      * @return TomTomAddress
      */
-    public function withCountrySubDivision(string $countrySubDivision = null)
+    public function withCountrySubdivision(string $countrySubdivision = null)
     {
         $new = clone $this;
-        $new->countrySubDivision = $countrySubDivision;
+        $new->countrySubdivision = $countrySubdivision;
 
         return $new;
     }
@@ -69,20 +69,20 @@ final class TomTomAddress extends Address
     /**
      * @return string|null
      */
-    public function getCountrySubDivisionName()
+    public function getCountrySubdivisionName()
     {
-        return $this->countrySubDivisionName;
+        return $this->countrySubdivisionName;
     }
 
     /**
-     * @param string|null $countrySubDivisionName
+     * @param string|null $countrySubdivisionName
      *
      * @return TomTomAddress
      */
-    public function withCountrySubDivisionName(string $countrySubDivisionName = null)
+    public function withCountrySubdivisionName(string $countrySubdivisionName = null)
     {
         $new = clone $this;
-        $new->countrySubDivisionName = $countrySubDivisionName;
+        $new->countrySubdivisionName = $countrySubdivisionName;
 
         return $new;
     }
@@ -91,8 +91,8 @@ final class TomTomAddress extends Address
     {
 
         $defaults = [
-            'countrySubDivision' => null,
-            'countrySubDivisionName' => null,
+            'countrySubdivision' => null,
+            'countrySubdivisionName' => null,
             'formattedAddress' => null,
         ];
 
@@ -102,9 +102,9 @@ final class TomTomAddress extends Address
         $address = parent::createFromArray($data);
 
         $address = self::createFromAddressInstance($address);
-        $address->withCountrySubDivision($data['countrySubDivision']);
-        $address->withCountrySubDivisionName($data['countrySubDivisionName']);
-        $address->withFormattedAddress($data['formattedAddress']);
+        $address = $address->withCountrySubdivision($data['countrySubdivision']);
+        $address = $address->withCountrySubdivisionName($data['countrySubdivisionName']);
+        $address = $address->withFormattedAddress($data['formattedAddress']);
 
         return $address;
     }
