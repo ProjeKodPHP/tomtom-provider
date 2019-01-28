@@ -16,7 +16,9 @@ use Geocoder\Collection;
 use Geocoder\Exception\InvalidCredentials;
 use Geocoder\Exception\UnsupportedOperation;
 use Geocoder\Model\Address;
+use Geocoder\Model\AddressBuilder;
 use Geocoder\Model\AddressCollection;
+use Geocoder\Provider\TomTom\Model\TomTomAddress;
 use Geocoder\Query\GeocodeQuery;
 use Geocoder\Query\ReverseQuery;
 use Geocoder\Http\Provider\AbstractHttpProvider;
@@ -134,7 +136,8 @@ final class TomTom extends AbstractHttpProvider implements Provider
         $locations = [];
         foreach ($results as $item) {
             list($lat, $lon) = explode(',', $item['position']);
-            $locations[] = Address::createFromArray([
+
+            $locations[] = TomTomAddress::createFromArray([
                 'providedBy' => $this->getName(),
                 'latitude' => $lat,
                 'longitude' => $lon,
@@ -144,6 +147,9 @@ final class TomTom extends AbstractHttpProvider implements Provider
                 'subLocality' => $item['address']['municipalitySubdivision'] ?? null,
                 'country' => $item['address']['country'] ?? null,
                 'countryCode' => $item['address']['countryCode'] ?? null,
+                'formattedAddress' => $item['address']['freeformAddress'] ?? null,
+                'countrySubDivision' => $item['address']['countrySubDivision'] ?? null,
+                'countrySubDivisionName' => $item['address']['countrySubDivisionName'] ?? null,
             ]);
         }
 
