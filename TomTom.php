@@ -148,8 +148,8 @@ final class TomTom extends AbstractHttpProvider implements Provider
                 'country' => $item['address']['country'] ?? null,
                 'countryCode' => $item['address']['countryCode'] ?? null,
                 'formattedAddress' => $item['address']['freeformAddress'] ?? null,
-                'countrySubDivision' => $item['address']['countrySubDivision'] ?? null,
-                'countrySubDivisionName' => $item['address']['countrySubDivisionName'] ?? null,
+                'countrySubdivision' => $item['address']['countrySubdivision'] ?? null,
+                'countrySubdivisionName' => $item['address']['countrySubdivisionName'] ?? null,
             ]);
         }
 
